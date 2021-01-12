@@ -1,3 +1,33 @@
-    title =$('div[class="title_wrapper"]>h1').text().trim() //getting title from the website
-    rating=$('div[class="ratingValue"]').text().trim() //getting the rating
-    summary=$('div[class="summary_text"]').text().trim()
+     const request = require("request-promise")
+     const cheerio = require("cheerio")
+     const json2csv = require("json2csv").parser  
+     const fs= require(fs)
+     
+     const movie="https://www.imdb.com/title/tt2560140/?ref_=hm_fanfav_tt_9_pd_fp1"
+     
+     const myfucntion = async()=> {
+          let imdbdata=[];
+          const response = await request({
+            method: 'POST',
+            uri: movie,
+            gzip:true,
+            headers: {       
+                accept: 
+                "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+               "accept-encoding": "gzip, deflate, br",
+                "accept-language": "en-CA,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            }
+          });
+          let $ = cheerio.load(response);
+         const title =$('div[class="title_wrapper"]>h1').text().trim() //getting title from the website
+         const rating=$('div[class="ratingValue"]').text().trim() //getting the rating
+         const summary=$('div[class="summary_text"]').text().trim()
+
+      }
+    
+    
+    
+    
+    
+    
+   
