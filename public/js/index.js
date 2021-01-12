@@ -1,11 +1,11 @@
      const request = require("request-promise")
      const cheerio = require("cheerio")
      const json2csv = require("json2csv").parser  
-     const fs= require(fs)
+     const fs= require("fs")
      
-     const movie="https://www.imdb.com/title/tt2560140/?ref_=hm_fanfav_tt_9_pd_fp1"
+     const movie="https://www.imdb.com/title/tt2560140/?ref_=hm_fanfav_tt_9_pd_fp1";
      
-     const myfucntion = async()=> {
+     (async()=> {
           let imdbdata=[];
           const response = await request({
             method: 'POST',
@@ -23,7 +23,17 @@
          const rating=$('div[class="ratingValue"]').text().trim() //getting the rating
          const summary=$('div[class="summary_text"]').text().trim()
 
-      }
+         imdbdata.push({
+             title:title,
+             rating: rating,
+             summmary:summary
+         });
+         const j2csv = new json2csv()
+         const csv =j2csv.parse(imdbdata)
+
+
+         fs.writFilesync("./imdb.csv",csv,"utf-8");
+      })();
     
     
     
