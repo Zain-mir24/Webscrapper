@@ -1,6 +1,6 @@
      const request = require("request-promise")
      const cheerio = require("cheerio")
-     const json2csv = require("json2csv").parser  
+     const json2csv = require("json2csv").Parser  
      const fs= require("fs")
      
      const movie="https://www.imdb.com/title/tt2560140/?ref_=hm_fanfav_tt_9_pd_fp1";
@@ -32,11 +32,14 @@
          const csv =j2csv.parse(imdbdata)
 
 
-         fs.writFilesync("./imdb.csv",csv,"utf-8");
+         fs.writeFileSync("./imdb.csv",csv,"utf-8");
       })();
     
     
-    
+      process.on('unhandledRejection', (reason, promise) => {
+        console.log('Unhandled Rejection at:', promise, 'reason:', reason);
+        // Application specific logging, throwing an error, or other logic here
+      });
     
     
     
