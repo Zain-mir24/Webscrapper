@@ -29,14 +29,14 @@
              summmary:summary
          });
          const j2csv = new json2csv()
-         const csv =j2csv.parse(imdbdata)
+         const csv =j2csv.parse(imdbdata) //using j2csv
 
 
          fs.writeFileSync("./imdb.csv",csv,"utf-8");
       })();
     
     
-      process.on('unhandledRejection', (reason, promise) => {
+      process.on('unhandledRejection', (reason, promise) => { //making promises
         console.log('Unhandled Rejection at:', promise, 'reason:', reason);
         // Application specific logging, throwing an error, or other logic here
       });
