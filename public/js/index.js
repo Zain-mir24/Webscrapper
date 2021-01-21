@@ -24,7 +24,7 @@
          const summary=$('div[class="summary_text"]').text().trim()
 
          imdbdata.push({
-             title:title,
+             title:title,                   //webscraper workings
              rating: rating,
              summmary:summary
          });
